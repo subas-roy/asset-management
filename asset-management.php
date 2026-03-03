@@ -12,17 +12,21 @@
  * Text Domain:       asset-management
  */
 
+defined('ABSPATH') or die(''); // Prevent direct access to the plugin file
+
+define('PLUGIN_ASSETS', plugin_dir_url(__FILE__) . 'assets/'); // Define a constant for the plugin's assets directory
+define('AM_VERSION', '1.0.0');
 class Asset_Management
 {
   public function __construct()
   {
-    add_action('wp_head', [$this, 'head_scripts']);
-    add_action('wp_footer', [$this, 'head_scripts']);
+    add_action('wp_enqueue_scripts', [$this, 'load_assets']);
   }
 
-  public function head_scripts()
+  public function load_assets()
   {
-    echo '<script>console.log("hello world!")</script>';
+    wp_enqueue_style('asset-management-css', PLUGIN_ASSETS . 'css/style.css', [], AM_VERSION);
+    wp_enqueue_script('asset-management-js', PLUGIN_ASSETS . 'js/script.js', [], AM_VERSION, true);
   }
 }
 
