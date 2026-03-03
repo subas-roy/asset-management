@@ -17,6 +17,7 @@ class Asset_Management
   public function __construct()
   {
     add_action('wp_head', [$this, 'head_scripts']);
+    add_action('wp_footer', [$this, 'head_scripts']);
   }
 
   public function head_scripts()
