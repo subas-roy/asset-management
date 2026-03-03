@@ -15,7 +15,7 @@
 defined('ABSPATH') or die(''); // Prevent direct access to the plugin file
 
 define('PLUGIN_ASSETS', plugin_dir_url(__FILE__) . 'assets/'); // Define a constant for the plugin's assets directory
-define('AM_VERSION', '1.0.0');
+define('AM_VERSION', '1.0.0'); // major.minor.patch format for versioning
 class Asset_Management
 {
   public function __construct()
@@ -27,6 +27,7 @@ class Asset_Management
   {
     wp_enqueue_style('asset-management-css', PLUGIN_ASSETS . 'css/style.css', [], AM_VERSION);
     wp_enqueue_script('asset-management-js', PLUGIN_ASSETS . 'js/script.js', [], AM_VERSION, true);
+    wp_enqueue_script('asset-management2-js', PLUGIN_ASSETS . 'js/script2.js', [], AM_VERSION, true);
   }
 }
 
