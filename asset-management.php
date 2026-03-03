@@ -14,20 +14,17 @@
 
 defined('ABSPATH') or die(''); // Prevent direct access to the plugin file
 
-define('PLUGIN_ASSETS', plugin_dir_url(__FILE__) . 'assets/'); // Define a constant for the plugin's assets directory
-define('AM_VERSION', '1.0.0'); // major.minor.patch format for versioning
+define('PLUGIN_PATH', plugin_dir_path(__FILE__));
+define('PLUGIN_ASSETS', plugin_dir_url(__FILE__) . 'assets/');
+define('AM_VERSION', '1.0.0');
+
+require_once(PLUGIN_PATH . 'includes/class-asset-manager.php');
+
 class Asset_Management
 {
   public function __construct()
   {
-    add_action('wp_enqueue_scripts', [$this, 'load_assets']);
-  }
-
-  public function load_assets()
-  {
-    wp_enqueue_style('asset-management-css', PLUGIN_ASSETS . 'css/style.css', [], AM_VERSION);
-    wp_enqueue_script('asset-management-js', PLUGIN_ASSETS . 'js/script.js', [], AM_VERSION, true);
-    wp_enqueue_script('asset-management2-js', PLUGIN_ASSETS . 'js/script2.js', [], AM_VERSION, true);
+    new Asset_Manager(); // Instantiate the Asset_Manager class to load assets
   }
 }
 
